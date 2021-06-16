@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="info">Приложение Quiz, ответь на вопросы\nи поделись результатом!</string>
+
+    <string name="question_number">Вопрос %1$d</string>
+    <string name="previous_button_text">Предыдущий</string>
+    <string name="next_button_text">Следующий</string>
+    <string name="submit_button_text">Рассчитать</string>
+    <string name="result_text">"Отвечено на %1$d/%2$d,\nоценка %3$d"</string>
+    <string name="result_tile">Результат</string>
+
+    <string name="back_previous_question_description">Back to the previous question</string>
+
+    <string name="subject">Результат Quiz!</string>
+    <string name="press_back_exit">Нажмите еще раз, чтобы выйти!</string>
+
+</resources>
