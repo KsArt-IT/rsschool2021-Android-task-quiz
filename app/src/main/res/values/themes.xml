@@ -12,6 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:colorBackground">?attr/colorSecondaryVariant</item>
+        <item name="android:radioButtonStyle">@style/MyRadioButton</item>
+    </style>
+    <style name="MyRadioButton" parent="Theme.Quiz">
+        <item name="colorControlNormal">?attr/colorPrimaryVariant</item>
+        <item name="colorControlActivated">?attr/colorSecondaryVariant</item>
     </style>
     <style name="Theme.Quiz.First" parent="Theme.Quiz">
         <item name="colorPrimary">@color/deep_orange_200</item>

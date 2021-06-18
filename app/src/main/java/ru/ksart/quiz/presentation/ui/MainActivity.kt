@@ -1,6 +1,7 @@
 package ru.ksart.quiz.presentation.ui
 
 import android.R.attr
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private fun share(message: String) {
         val intent = Intent(Intent.ACTION_SEND).apply {
             putExtra(Intent.EXTRA_EMAIL, arrayOf("ksart.it.001@gmail.com"))

@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import com.google.android.material.radiobutton.MaterialRadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.android.material.radiobutton.MaterialRadioButton
 import ru.ksart.quiz.R
 import ru.ksart.quiz.databinding.FragmentQuizBinding
 import ru.ksart.quiz.presentation.viewmodels.QuizViewModel
@@ -55,11 +54,10 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         }
         // установим обработчик
         binding.answerRadioGroup.setOnCheckedChangeListener { group, checkedId ->
-            binding.answerRadioGroup.findViewById<RadioButton>(checkedId)?.let {
-                group.indexOfChild(it).takeIf { it >= 0 }?.let { checkedIndex ->
-                    DebugHelper.log("QuizFragment|checkedIndex: ${checkedIndex}")
-                    viewModel.setAnswer(checkedIndex)
-                }
+            binding.answerRadioGroup.findViewById<View>(checkedId)?.let { view ->
+                val checkedIndex = view.tag as? Int ?: -1
+                DebugHelper.log("QuizFragment|checkedIndex: $checkedIndex")
+                viewModel.setAnswer(checkedIndex)
             }
         }
     }
@@ -85,14 +83,14 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
             // вопрос
             binding.questionTextView.text = question.question
             // заполняем ответы
-            val selected = question.answerSelected
-            DebugHelper.log("QuizFragment|answerSelected: ${selected}")
+            DebugHelper.log("QuizFragment|answerSelected: ${question.answerSelected}")
             question.answers.forEachIndexed { index, answer ->
                 // создаем
-                // com.google.android.material.radiobutton.MaterialRadioButton
                 val radioButton = MaterialRadioButton(binding.answerRadioGroup.context)
-                if (index == selected) {
-                    DebugHelper.log("QuizFragment|answerSelected: ${selected}")
+                radioButton.setButtonDrawable(R.drawable.radiobutton_selector)
+                radioButton.tag = index
+                if (index == question.answerSelected) {
+                    DebugHelper.log("QuizFragment|answerSelected: ${question.answerSelected}")
                     radioButton.isChecked = true
                 }
                 radioButton.text = answer.text

@@ -22,7 +22,6 @@ class QuizViewModel : ViewModel() {
 
     // номер вопроса
     private var questionCurrent = 0
-        private set
 
     // номер вопроса для титула
     val titleN get() = questionCurrent + 1
