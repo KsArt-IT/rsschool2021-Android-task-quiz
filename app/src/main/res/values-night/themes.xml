@@ -13,12 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">?attr/colorSecondaryVariant</item>
-        <item name="android:radioButtonStyle">@style/MyRadioButton</item>
     </style>
 
-    <style name="MyRadioButton" parent="Theme.Quiz">
-        <item name="colorControlNormal">?attr/colorPrimaryVariant</item>
-        <item name="colorControlActivated">?attr/colorSecondaryVariant</item>
+    <style name="Theme.Quiz.Result" parent="Theme.Quiz">
+        <item name="colorPrimary">@color/red_200</item>
+        <item name="colorPrimaryDark">@color/red_200_dark</item>
+        <item name="colorPrimaryVariant">@color/red_200_dark</item>
+
+        <item name="colorSecondary">@color/red_200</item>
+        <item name="colorSecondaryVariant">@color/red_200_light</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/red_200_dark</item>
     </style>
 
     <style name="Theme.Quiz.First" parent="Theme.Quiz">
@@ -44,14 +49,14 @@
     </style>
 
     <style name="Theme.Quiz.Third" parent="Theme.Quiz">
-        <item name="colorPrimary">@color/light_green_200</item>
-        <item name="colorPrimaryDark">@color/light_green_200_dark</item>
-        <item name="colorPrimaryVariant">@color/light_green_200_dark</item>
+        <item name="colorPrimary">@color/green_200</item>
+        <item name="colorPrimaryDark">@color/green_200_dark</item>
+        <item name="colorPrimaryVariant">@color/green_200_dark</item>
 
-        <item name="colorSecondary">@color/light_green_200</item>
-        <item name="colorSecondaryVariant">@color/light_green_200_light</item>
+        <item name="colorSecondary">@color/green_200</item>
+        <item name="colorSecondaryVariant">@color/green_200_light</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/light_green_200_dark</item>
+        <item name="android:statusBarColor">@color/green_200_dark</item>
     </style>
 
     <style name="Theme.Quiz.Fourth" parent="Theme.Quiz">
@@ -76,18 +81,7 @@
         <item name="android:statusBarColor">@color/deep_purple_200_dark</item>
     </style>
 
-    <style name="Theme.Quiz.Result" parent="Theme.Quiz">
-        <item name="colorPrimary">@color/red_200</item>
-        <item name="colorPrimaryDark">@color/red_200_dark</item>
-        <item name="colorPrimaryVariant">@color/red_200_dark</item>
-
-        <item name="colorSecondary">@color/red_200</item>
-        <item name="colorSecondaryVariant">@color/red_200_light</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/red_200_dark</item>
-    </style>
-
-    <style name="Theme.Quiz.Start" parent="Theme.Quiz">
+    <style name="Theme.Quiz.Sixth" parent="Theme.Quiz">
         <item name="colorPrimary">@color/teal_300</item>
         <item name="colorPrimaryDark">@color/teal_300_dark</item>
         <item name="colorPrimaryVariant">@color/teal_300_dark</item>

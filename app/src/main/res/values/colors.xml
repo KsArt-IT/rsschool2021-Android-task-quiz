@@ -16,9 +16,9 @@
     <color name="yellow_200_light">#ffffcf</color>
     <color name="yellow_200_dark">#cbc26d</color>
 
-    <color name="light_green_200">#76ff03</color>
-    <color name="light_green_200_light">#b0ff57</color>
-    <color name="light_green_200_dark">#32cb00</color>
+    <color name="green_200">#4caf50</color>
+    <color name="green_200_light">#80e27e</color>
+    <color name="green_200_dark">#087f23</color>
 
     <color name="blue_200">#90caf9</color>
     <color name="blue_200_light">#c3fdff</color>

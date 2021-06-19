@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.ksart.quiz.R
 import ru.ksart.quiz.model.data.Question
+import ru.ksart.quiz.model.data.QuizThemes
 import ru.ksart.quiz.model.repositories.QuizRepository
 import ru.ksart.quiz.utils.DebugHelper
 import ru.ksart.quiz.utils.SingleLiveEvent
@@ -50,7 +51,7 @@ class QuizViewModel : ViewModel() {
     val isShowResult: LiveData<Triple<Int, Int, Int>> get() = _isShowResult
 
     // кнопка назад, активна - не активна
-    private val _isEnabledPreviousButton = MutableLiveData<Boolean>()
+    private val _isEnabledPreviousButton = MutableLiveData<Boolean>(false)
     val isEnabledPreviousButton: LiveData<Boolean> get() = _isEnabledPreviousButton
 
     // кнопка вперед, активна - не активна
@@ -112,11 +113,14 @@ class QuizViewModel : ViewModel() {
 
     fun setAnswer(indexAnswer: Int) {
         if (indexAnswer in 0..questions[questionCurrent].answers.lastIndex) {
-            questions[questionCurrent].answerSelected = indexAnswer
-            DebugHelper.log("QuizViewModel|setAnswer: $questionCurrent = $indexAnswer")
-            defineButtons()
+            // если не равно предыдущему, то меняем
+            if (questions[questionCurrent].answerSelected != indexAnswer) {
+                questions[questionCurrent].answerSelected = indexAnswer
+                DebugHelper.log("QuizViewModel|setAnswer: $questionCurrent = $indexAnswer")
+                defineButtons()
+            }
         } else {
-            _isToast.postValue("error: index questions")
+            _isToast.postValue("error: index questions = $indexAnswer")
         }
     }
 
@@ -135,18 +139,8 @@ class QuizViewModel : ViewModel() {
 
     @StyleRes
     fun getThemeId(): Int {
-        val i = if (questionCurrent >= questions.size) questionCurrent else questionCurrent % 5
-        DebugHelper.log("--------------------")
-        DebugHelper.log("QuizViewModel|getThemeId: N=$i")
-        DebugHelper.log("--------------------")
-        return when (i) {
-            0 -> R.style.Theme_Quiz_First
-            1 -> R.style.Theme_Quiz_Second
-            2 -> R.style.Theme_Quiz_Third
-            3 -> R.style.Theme_Quiz_Fourth
-            4 -> R.style.Theme_Quiz_Fifth
-            else -> R.style.Theme_Quiz_Result
-        }
+        return if (questionCurrent > questions.lastIndex) QuizThemes.RESULT.themeId
+        else QuizThemes.getTheme(questionCurrent).themeId
     }
 
     fun share() {

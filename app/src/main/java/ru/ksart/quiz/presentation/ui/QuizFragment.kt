@@ -1,10 +1,15 @@
 package ru.ksart.quiz.presentation.ui
 
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.radiobutton.MaterialRadioButton
@@ -12,14 +17,38 @@ import ru.ksart.quiz.R
 import ru.ksart.quiz.databinding.FragmentQuizBinding
 import ru.ksart.quiz.presentation.viewmodels.QuizViewModel
 import ru.ksart.quiz.utils.DebugHelper
+import ru.ksart.quiz.utils.isAndroid6
 
+
+@SuppressLint("ResourceType")
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
     private var _binding: FragmentQuizBinding? = null
     private val binding get() = requireNotNull(_binding)
 
     private val viewModel: QuizViewModel by activityViewModels()
-    private var isToolbarNavigationBack = false
+
+    private val radioButtonLayoutParams by lazy {
+        RadioGroup.LayoutParams(
+            RadioGroup.LayoutParams.MATCH_PARENT,
+            RadioGroup.LayoutParams.WRAP_CONTENT
+        )
+    }
+
+    private val colorStateList by lazy {
+        if (isAndroid6) {
+            ColorStateList.createFromXml(
+                resources,
+                resources.getXml(R.color.radiobutton_color_selector),
+                activity?.theme
+            )
+        } else {
+            ColorStateList.createFromXml(
+                resources,
+                resources.getXml(R.color.radiobutton_color_selector),
+            )
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,20 +77,19 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         }
         // обработка навигации из тулбара
         binding.toolbar.setNavigationOnClickListener {
-            if (isToolbarNavigationBack) {
-                viewModel.previousQuestion()
-            } else showToast(getString(R.string.info))
+            viewModel.isEnabledPreviousButton.value?.takeIf { it }
+                ?.let { viewModel.previousQuestion() }
+                ?: showToast(getString(R.string.info))
         }
         // установим обработчик
         binding.answerRadioGroup.setOnCheckedChangeListener { group, checkedId ->
-            binding.answerRadioGroup.findViewById<View>(checkedId)?.let { view ->
-                val checkedIndex = view.tag as? Int ?: -1
-                DebugHelper.log("QuizFragment|checkedIndex: $checkedIndex")
-                viewModel.setAnswer(checkedIndex)
+            (group.children.find { it.id == checkedId }?.tag as? Int)?.let {
+                viewModel.setAnswer(it)
             }
         }
     }
 
+    @SuppressLint("ResourceType")
     private fun bindViewModel() {
         viewModel.isEnabledNextButton.observe(viewLifecycleOwner) {
             DebugHelper.log("QuizFragment|isEnabledNextButton: $it")
@@ -87,22 +115,28 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
             question.answers.forEachIndexed { index, answer ->
                 // создаем
                 val radioButton = MaterialRadioButton(binding.answerRadioGroup.context)
-                radioButton.setButtonDrawable(R.drawable.radiobutton_selector)
+                // сохраним номер ответа в тег
                 radioButton.tag = index
-                if (index == question.answerSelected) {
-                    DebugHelper.log("QuizFragment|answerSelected: ${question.answerSelected}")
-                    radioButton.isChecked = true
-                }
                 radioButton.text = answer.text
+                // устанавливаем дизайн
+                radioButton.setButtonDrawable(R.drawable.radiobutton_selector)
+                radioButton.buttonTintList = colorStateList
+                // прикрепляем к родителю
+                radioButton.layoutParams = radioButtonLayoutParams
                 binding.answerRadioGroup.addView(radioButton)
+            }
+            // установим выбранный
+            if (question.answerSelected in 0 until binding.answerRadioGroup.childCount) {
+                (binding.answerRadioGroup.children.find {
+                    it.tag == question.answerSelected
+                } as? RadioButton)?.isChecked = true
             }
         }
         // показать в тулбаре кнопку назад
-        viewModel.isEnabledPreviousButton.observe(viewLifecycleOwner) {
+        viewModel.isEnabledPreviousButton.observe(viewLifecycleOwner) { it ->
             DebugHelper.log("isToolbarBack: $it")
-            isToolbarNavigationBack = it
             binding.toolbar.setNavigationIcon(
-                if (isToolbarNavigationBack) R.drawable.ic_back_ios
+                if (it) R.drawable.ic_back_ios
                 else R.drawable.ic_info
             )
         }

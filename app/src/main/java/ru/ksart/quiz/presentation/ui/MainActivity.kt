@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
     private var backPressed = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         //установим тему
         setTheme(viewModel.getThemeId())
+        super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
