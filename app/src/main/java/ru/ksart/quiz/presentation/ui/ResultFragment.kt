@@ -44,10 +44,10 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
 
     private fun initListener() {
         binding.share.setOnClickListener {
-            viewModel.share()
+            viewModel.shareResult()
         }
         binding.restart.setOnClickListener {
-            viewModel.restart()
+            viewModel.restartQuestion()
         }
         binding.close.setOnClickListener {
             viewModel.exit()

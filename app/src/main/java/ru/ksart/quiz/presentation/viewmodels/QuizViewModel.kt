@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.ksart.quiz.R
 import ru.ksart.quiz.model.data.Question
+import ru.ksart.quiz.model.data.QuizState
 import ru.ksart.quiz.model.data.QuizThemes
 import ru.ksart.quiz.model.repositories.QuizRepository
 import ru.ksart.quiz.utils.DebugHelper
@@ -26,6 +27,10 @@ class QuizViewModel : ViewModel() {
 
     // номер вопроса для титула
     val titleN get() = questionCurrent + 1
+
+    // состояние
+    var quizState: QuizState = QuizState.INITIAL
+    private set
 
     // результат
     private var resultQuiz: Triple<Int, Int, Int> = Triple(0, 0, 0)
@@ -90,6 +95,7 @@ class QuizViewModel : ViewModel() {
     }
 
     private fun defineButtons() {
+        quizState = if (questionCurrent == 0) QuizState.FIRST else QuizState.QUIZ
         _isEnabledPreviousButton.postValue(questionCurrent > 0)
         _isEnabledNextButton.postValue(
             (questions[questionCurrent].answerSelected >= 0) to
@@ -143,7 +149,7 @@ class QuizViewModel : ViewModel() {
         else QuizThemes.getTheme(questionCurrent).themeId
     }
 
-    fun share() {
+    fun shareResult() {
         viewModelScope.launch(Dispatchers.Default) {
             try {
                 val result = StringBuilder()
@@ -172,6 +178,7 @@ class QuizViewModel : ViewModel() {
             if (questionCurrent in 0..questions.lastIndex) {
                 ++questionCurrent
                 if (questionCurrent >= questions.size) {
+                    quizState = QuizState.RESULT
                     // показать результат
                     _isShowResultFragment.postValue(Unit)
                 } else {
@@ -196,7 +203,7 @@ class QuizViewModel : ViewModel() {
         DebugHelper.log("QuizViewModel|previousQuestion: $questionCurrent")
     }
 
-    fun restart() {
+    fun restartQuestion() {
         _isRestart.postValue(Unit)
     }
 

@@ -9,10 +9,12 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import ru.ksart.quiz.R
 import ru.ksart.quiz.databinding.ActivityMainBinding
+import ru.ksart.quiz.model.data.QuizState
 import ru.ksart.quiz.presentation.viewmodels.QuizViewModel
 import ru.ksart.quiz.utils.DebugHelper
 
@@ -67,6 +69,7 @@ class MainActivity : AppCompatActivity() {
     private fun showFragmentQuiz() {
         setThemesForQuestion()
         supportFragmentManager.commit {
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             replace<QuizFragment>(R.id.container, TAG_QUIZ)
             setReorderingAllowed(true)
         }
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity() {
     private fun showFragmentResult() {
         setThemesForQuestion()
         supportFragmentManager.commit {
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             replace<ResultFragment>(R.id.container, TAG_RESULT)
             setReorderingAllowed(true)
         }
@@ -120,11 +124,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (backPressed + 2000 > System.currentTimeMillis())
-            super.onBackPressed();
-        else
-            Toast.makeText(this, R.string.press_back_exit, Toast.LENGTH_SHORT).show()
-        backPressed = System.currentTimeMillis()
+        when (viewModel.quizState) {
+            QuizState.QUIZ -> viewModel.previousQuestion()
+            QuizState.RESULT -> viewModel.restartQuestion()
+            else -> {
+                // выход из приложения
+                if (backPressed + 3000 > System.currentTimeMillis())
+                    super.onBackPressed();
+                else
+                    Toast.makeText(this, R.string.press_back_exit, Toast.LENGTH_SHORT).show()
+                backPressed = System.currentTimeMillis()
+            }
+        }
     }
 
     companion object {

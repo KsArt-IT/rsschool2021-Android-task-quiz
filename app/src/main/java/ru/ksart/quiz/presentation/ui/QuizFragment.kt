@@ -28,14 +28,14 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
     private val viewModel: QuizViewModel by activityViewModels()
 
-    private val radioButtonLayoutParams by lazy {
+    private val radioGroupLayoutParams by lazy {
         RadioGroup.LayoutParams(
             RadioGroup.LayoutParams.MATCH_PARENT,
             RadioGroup.LayoutParams.WRAP_CONTENT
         )
     }
 
-    private val colorStateList by lazy {
+    private val radioButtonColorStateList by lazy {
         if (isAndroid6) {
             ColorStateList.createFromXml(
                 resources,
@@ -120,9 +120,9 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
                 radioButton.text = answer.text
                 // устанавливаем дизайн
                 radioButton.setButtonDrawable(R.drawable.radiobutton_selector)
-                radioButton.buttonTintList = colorStateList
+                radioButton.buttonTintList = radioButtonColorStateList
                 // прикрепляем к родителю
-                radioButton.layoutParams = radioButtonLayoutParams
+                radioButton.layoutParams = radioGroupLayoutParams
                 binding.answerRadioGroup.addView(radioButton)
             }
             // установим выбранный
