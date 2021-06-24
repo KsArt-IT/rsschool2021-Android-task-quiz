@@ -69,18 +69,32 @@ class MainActivity : AppCompatActivity() {
     private fun showFragmentQuiz() {
         setThemesForQuestion()
         supportFragmentManager.commit {
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            replace<QuizFragment>(R.id.container, TAG_QUIZ)
+            // разрешить переупорядочивание изменение состояния фрагмента для анаимации
             setReorderingAllowed(true)
+            // анимация перехода
+            setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            replace(R.id.container, QuizFragment(), TAG_QUIZ)
         }
     }
 
     private fun showFragmentResult() {
         setThemesForQuestion()
         supportFragmentManager.commit {
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            replace<ResultFragment>(R.id.container, TAG_RESULT)
+            // разрешить переупорядочивание изменение состояния фрагмента для анаимации
             setReorderingAllowed(true)
+            // анимация перехода
+            setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            replace(R.id.container, ResultFragment(), TAG_RESULT)
         }
     }
 

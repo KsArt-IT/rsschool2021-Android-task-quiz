@@ -2,7 +2,7 @@ package ru.ksart.quiz.utils
 
 import android.os.Build
 
-// Проверка на SDK M-Android 7 API 23
+// Проверка на SDK M-Android 6 API 23
 val isAndroid6: Boolean
     get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 

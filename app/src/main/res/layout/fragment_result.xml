@@ -28,19 +28,22 @@
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_share" />
+        app:srcCompat="@drawable/ic_share"
+        app:tint="@color/color_focused" />
 
     <ImageView
         android:id="@+id/restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_restart" />
+        app:srcCompat="@drawable/ic_restart"
+        app:tint="@color/color_focused" />
 
     <ImageView
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_close" />
+        app:srcCompat="@drawable/ic_close"
+        app:tint="@color/color_focused" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

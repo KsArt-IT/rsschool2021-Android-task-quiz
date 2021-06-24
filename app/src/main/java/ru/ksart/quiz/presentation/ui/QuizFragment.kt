@@ -55,6 +55,8 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+//        postponeEnterTransition()
+
         _binding = FragmentQuizBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -131,6 +133,8 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
                     it.tag == question.answerSelected
                 } as? RadioButton)?.isChecked = true
             }
+            // запустим переход
+//            startPostponedEnterTransition()
         }
         // показать в тулбаре кнопку назад
         viewModel.isEnabledPreviousButton.observe(viewLifecycleOwner) { it ->
