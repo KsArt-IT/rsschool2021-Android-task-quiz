@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quiz.First">
         <activity
-            android:name="ru.ksart.quiz.presentation.ui.MainActivity"
+            android:name="ru.ksart.quiz.presentation.main.MainActivity"
+            android:theme="@style/Theme.Quiz.SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

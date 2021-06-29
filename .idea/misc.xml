@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1135" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable-v24/splash_image_foreground.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_back_ios.xml" value="0.1135" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_branded_launch_foreground.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_close.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_forward_ios.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_info.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1135" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_radio.xml" value="0.21927083333333333" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_radio_down.xml" value="0.21927083333333333" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_radio_focused.xml" value="0.1135" />
@@ -16,6 +19,8 @@
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_restart.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/ic_share.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/radiobutton_selector.xml" value="0.37384615384615383" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/splash_background.xml" value="0.1135" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/drawable/splash_screen_quiz.xml" value="0.1135" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/layout/activity_main.xml" value="0.21784420289855072" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/layout/fragment_main.xml" value="0.21784420289855072" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/layout/fragment_q.xml" value="0.19427083333333334" />
@@ -26,6 +31,9 @@
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/layout/fragment_quiz_second.xml" value="0.20520833333333333" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/layout/fragment_quiz_third.xml" value="0.20520833333333333" />
         <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/layout/fragment_result.xml" value="0.21784420289855072" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/mipmap-anydpi-v26/ic_branded_launch.xml" value="0.1135" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1135" />
+        <entry key="..\:/Projects/KsArT/RS_School_2021/rsschool2021-Android-task-quiz/app/src/main/res/mipmap-anydpi-v26/splash_image.xml" value="0.1135" />
       </map>
     </option>
   </component>

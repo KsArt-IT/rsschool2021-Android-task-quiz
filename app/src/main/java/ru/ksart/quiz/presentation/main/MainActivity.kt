@@ -1,7 +1,8 @@
-package ru.ksart.quiz.presentation.ui
+package ru.ksart.quiz.presentation.main
 
 import android.R.attr
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
@@ -9,12 +10,14 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
 import ru.ksart.quiz.R
 import ru.ksart.quiz.databinding.ActivityMainBinding
 import ru.ksart.quiz.model.data.QuizState
+import ru.ksart.quiz.presentation.ui.QuizFragment
+import ru.ksart.quiz.presentation.ui.ResultFragment
 import ru.ksart.quiz.presentation.viewmodels.QuizViewModel
 import ru.ksart.quiz.utils.DebugHelper
 
@@ -23,9 +26,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: QuizViewModel by viewModels()
-    private var backPressed = 0L
+    private var backPressedHold = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(500)
         //установим тему
         setTheme(viewModel.getThemeId())
         super.onCreate(savedInstanceState)
@@ -72,12 +76,14 @@ class MainActivity : AppCompatActivity() {
             // разрешить переупорядочивание изменение состояния фрагмента для анаимации
             setReorderingAllowed(true)
             // анимация перехода
+/*
             setCustomAnimations(
                 R.anim.slide_in,
                 R.anim.fade_out,
                 R.anim.fade_in,
                 R.anim.slide_out
             )
+*/
             replace(R.id.container, QuizFragment(), TAG_QUIZ)
         }
     }
@@ -88,12 +94,14 @@ class MainActivity : AppCompatActivity() {
             // разрешить переупорядочивание изменение состояния фрагмента для анаимации
             setReorderingAllowed(true)
             // анимация перехода
+/*
             setCustomAnimations(
                 R.anim.slide_in,
                 R.anim.fade_out,
                 R.anim.fade_in,
                 R.anim.slide_out
             )
+*/
             replace(R.id.container, ResultFragment(), TAG_RESULT)
         }
     }
@@ -143,11 +151,11 @@ class MainActivity : AppCompatActivity() {
             QuizState.RESULT -> viewModel.restartQuestion()
             else -> {
                 // выход из приложения
-                if (backPressed + 3000 > System.currentTimeMillis())
+                if (backPressedHold + 3000 > System.currentTimeMillis())
                     super.onBackPressed();
                 else
                     Toast.makeText(this, R.string.press_back_exit, Toast.LENGTH_SHORT).show()
-                backPressed = System.currentTimeMillis()
+                backPressedHold = System.currentTimeMillis()
             }
         }
     }

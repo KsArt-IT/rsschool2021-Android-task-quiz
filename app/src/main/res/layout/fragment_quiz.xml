@@ -54,7 +54,6 @@
             android:weightSum="1" />
 
     </ScrollView>
-
     <Button
         android:id="@+id/previousButton"
         android:layout_width="180dp"
